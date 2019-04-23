@@ -4,7 +4,6 @@ import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
 interface IVideoListProps {
-	style?: React.CSSProperties;
 	value: IVideo[];
 }
 

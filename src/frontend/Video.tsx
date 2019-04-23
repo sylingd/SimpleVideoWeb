@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { IVideo } from '../types';
+import { IVideo, IComment } from '../types';
+import { List, Avatar, Icon } from 'antd';
+import * as dateFormat from 'dateformat';
 import './Video.css';
 
 interface IVideoRouteProps {
@@ -13,6 +15,7 @@ interface IVideoProps extends RouteComponentProps<IVideoRouteProps> {
 interface IVideoState {
 	id: number;
 	video: IVideo;
+	comments: IComment[];
 }
 
 class Video extends React.Component<IVideoProps, IVideoState> {
@@ -29,14 +32,38 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 		}
 		this.state = {
 			"id": id,
-			"video": currentVideo
+			"video": currentVideo,
+			"comments": require('../comment.json')
 		}
 	}
 	public render() {
 		return (
 			<div className="video">
 				<iframe src={`//player.bilibili.com/player.html?aid=${this.state.video.aid}&cid=${this.state.video.cid}"`} />
-			</div>	  
+				<List
+					itemLayout="vertical"
+					size="large"
+					dataSource={this.state.comments}
+					renderItem={item => (
+						<List.Item
+							key={item.id}
+							actions={[(
+								<span key="like-o">
+									<Icon type="like-o" style={{ marginRight: 8 }} />
+									{item.zan}
+								</span>), (<span>
+									{dateFormat(new Date(item.time * 1000), 'yyyy-mm-dd hh:MM:ss')}
+								</span>)
+							]}>
+							<List.Item.Meta
+								avatar={<Avatar src={item.user.avatar} />}
+								title={item.user.name}
+								description={item.content}
+							/>
+						</List.Item>
+					)}
+				/>
+			</div>
 		)
 	}
 }

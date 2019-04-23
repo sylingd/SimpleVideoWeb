@@ -6,4 +6,18 @@ interface IVideo {
 	cid: number;
 }
 
-export { IVideo }
+interface IUser {
+	id: number;
+	name: string;
+	avatar: string;
+}
+
+interface IComment {
+	id: number;
+	user: IUser;
+	time: number;
+	zan: number;
+	content: string;
+}
+
+export { IVideo, IUser, IComment }
