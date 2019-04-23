@@ -3,3 +3,10 @@
 	border: none;
 	height: 600px;
 }
+.app .video .comment .avatar {
+	width: 48px;
+	height: 48px;
+}
+.app .video .new-comment {
+	
+}

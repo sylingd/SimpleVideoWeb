@@ -25,8 +25,10 @@ class App extends React.Component {
 					</Menu>
 				</Header>
 				<Content className="content">
-					<Route exact={true} path="/" component={Home} />
-					<Route path="/video/:id" component={Video} />
+					<div className="wrapper">
+						<Route exact={true} path="/" component={Home} />
+						<Route path="/video/:id" component={Video} />
+					</div>
 				</Content>
 			</Layout>
 		);

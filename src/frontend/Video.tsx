@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { IVideo, IComment } from '../types';
-import { List, Avatar, Icon } from 'antd';
+import { List, Avatar, Icon, Input, Button } from 'antd';
 import * as dateFormat from 'dateformat';
 import './Video.css';
 
@@ -16,6 +16,7 @@ interface IVideoState {
 	id: number;
 	video: IVideo;
 	comments: IComment[];
+	new_comment: string;
 }
 
 class Video extends React.Component<IVideoProps, IVideoState> {
@@ -33,14 +34,20 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 		this.state = {
 			"id": id,
 			"video": currentVideo,
-			"comments": require('../comment.json')
+			"comments": require('../comment.json'),
+			"new_comment": ""
 		}
 	}
 	public render() {
 		return (
 			<div className="video">
 				<iframe src={`//player.bilibili.com/player.html?aid=${this.state.video.aid}&cid=${this.state.video.cid}"`} />
+				<div className="new-comment">
+					<Input.TextArea rows={3} />
+					<Button>发表评论</Button>
+				</div>
 				<List
+					className="comment"
 					itemLayout="vertical"
 					size="large"
 					dataSource={this.state.comments}
@@ -56,7 +63,7 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 								</span>)
 							]}>
 							<List.Item.Meta
-								avatar={<Avatar src={item.user.avatar} />}
+								avatar={<Avatar className="avatar" src={item.user.avatar} />}
 								title={item.user.name}
 								description={item.content}
 							/>
