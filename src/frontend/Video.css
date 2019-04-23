@@ -1,0 +1,5 @@
+.app .video iframe {
+	width: 100%;
+	border: none;
+	height: 600px;
+}
