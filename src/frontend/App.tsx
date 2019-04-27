@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import './App.css';
 import Home from './Home';
 import Video from './Video';
+import Login from './User/Login';
 import { Layout, Menu } from 'antd';
 
 const {
@@ -22,11 +23,13 @@ class App extends React.Component {
 							<Menu.Item key="cat:1">分类1</Menu.Item>
 							<Menu.Item key="cat:2">分类2</Menu.Item>
 						</SubMenu>
+						<Menu.Item key="login"><Link to="/user/login">登录</Link></Menu.Item>
 					</Menu>
 				</Header>
 				<Content className="content">
 					<div className="wrapper">
 						<Route exact={true} path="/" component={Home} />
+						<Route path="/user/login" component={Login} />
 						<Route path="/video/:id" component={Video} />
 					</div>
 				</Content>

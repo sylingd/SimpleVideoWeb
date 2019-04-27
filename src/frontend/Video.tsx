@@ -41,35 +41,40 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 	public render() {
 		return (
 			<div className="video">
-				<iframe src={`//player.bilibili.com/player.html?aid=${this.state.video.aid}&cid=${this.state.video.cid}"`} />
-				<div className="new-comment">
-					<Input.TextArea rows={3} />
-					<Button>发表评论</Button>
+				<iframe src={`//player.bilibili.com/player.html?aid=${this.state.video.aid}"`} />
+				<div className="left-section">
+					<div className="new-comment">
+						<Input.TextArea rows={3} />
+						<Button>发表评论</Button>
+					</div>
+					<List
+						className="comment"
+						itemLayout="vertical"
+						size="large"
+						dataSource={this.state.comments}
+						renderItem={item => (
+							<List.Item
+								key={item.id}
+								actions={[(
+									<span key="like-o">
+										<Icon type="like-o" style={{ marginRight: 8 }} />
+										{item.zan}
+									</span>), (<span>
+										{dateFormat(new Date(item.create_time), 'yyyy-mm-dd hh:MM:ss')}
+									</span>)
+								]}>
+								<List.Item.Meta
+									avatar={<Avatar className="avatar" src={item.user.avatar} />}
+									title={item.user.name}
+									description={item.body}
+								/>
+							</List.Item>
+						)}
+					/>
 				</div>
-				<List
-					className="comment"
-					itemLayout="vertical"
-					size="large"
-					dataSource={this.state.comments}
-					renderItem={item => (
-						<List.Item
-							key={item.id}
-							actions={[(
-								<span key="like-o">
-									<Icon type="like-o" style={{ marginRight: 8 }} />
-									{item.zan}
-								</span>), (<span>
-									{dateFormat(new Date(item.time * 1000), 'yyyy-mm-dd hh:MM:ss')}
-								</span>)
-							]}>
-							<List.Item.Meta
-								avatar={<Avatar className="avatar" src={item.user.avatar} />}
-								title={item.user.name}
-								description={item.content}
-							/>
-						</List.Item>
-					)}
-				/>
+				<div className="right-section">
+				相关推荐
+				</div>
 			</div>
 		)
 	}

@@ -7,6 +7,37 @@
 	width: 48px;
 	height: 48px;
 }
+
 .app .video .new-comment {
-	
+	display: flex;
+	justify-content: stretch;
+}
+.app .video .new-comment textarea {
+	resize: none;
+	margin-right: 10px;
+}
+.app .video .new-comment button {
+	white-space: inherit;
+	height: 70px;
+	width: 64px;
+	text-align: center;
+}
+.app .video .left-section,
+.app .video .right-section {
+	display: inline-block;
+	padding-top: 20px;
+	float: left;
+}
+.app .video .left-section {
+	width: calc(100% - 330px);
+	padding-right: 30px;
+	box-sizing: border-box;
+}
+.app .video .right-section {
+	width: 320px;
+}
+.app .video .right-section::after {
+	display: table;
+	clear: both;
+	content: "";
 }

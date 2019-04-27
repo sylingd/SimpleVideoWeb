@@ -1,23 +1,25 @@
-interface IVideo {
+export interface IVideo {
 	id: number;
+	category: number;
+	user: number;
 	title: string;
 	image: string;
 	aid: number;
-	cid: number;
+	create_time: string;
 }
 
-interface IUser {
+export interface IUser {
 	id: number;
 	name: string;
 	avatar: string;
+	nickname: string;
+	email: string;
 }
 
-interface IComment {
+export interface IComment {
 	id: number;
 	user: IUser;
-	time: number;
+	create_time: string;
 	zan: number;
-	content: string;
+	body: string;
 }
-
-export { IVideo, IUser, IComment }
