@@ -1,15 +1,22 @@
 import { handleActions } from 'redux-actions';
-import { IModel } from '../model';
+import { IUser } from '../../types';
 import * as actions from '../action/types';
+
+interface IModel {
+	is: boolean;
+	user: IUser | null;
+}
 
 // 初始的状态
 const initialState: IModel = {
+	is: false,
 	user: null
 };
 
 const Reducer = handleActions<IModel>({
 	[actions.SET_USER]: (state: any, action: any) => {
 		return {
+			is: action.user != null,
 			user: action.user
 		};
 	},

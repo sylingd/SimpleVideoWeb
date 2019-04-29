@@ -1,6 +1,7 @@
 import ajax from '../../ajax';
 import * as LoginApi from './login';
 import * as RegisterApi from './register';
+import * as MeApi from './me';
 
 export async function Login(req: LoginApi.IRequest) {
 	const res = await ajax({
@@ -30,6 +31,18 @@ export async function Register(req: RegisterApi.IRequest) {
 	});
 	if (res.success) {
 		const data = (res.data as RegisterApi.IResponse);
+		return data;
+	} else {
+		return new Error(res.error);
+	}
+}
+
+export async function Me() {
+	const res = await ajax({
+		url: MeApi.URL
+	});
+	if (res.success) {
+		const data = (res.data as MeApi.IResponse);
 		return data;
 	} else {
 		return new Error(res.error);

@@ -12,6 +12,15 @@ export function setUser(user: IUser | null) {
 	}
 }
 
+export function refresh() {
+	return async (dispatch: Dispatch) => {
+		const res = await UserApi.Me();
+		if (!(res instanceof Error)) {
+			dispatch(setUser(res.user));
+		}
+	}
+}
+
 export function logout() {
 	return (dispatch: Dispatch) => {
 		sessionStorage.removeItem("token");
