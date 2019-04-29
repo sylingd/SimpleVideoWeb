@@ -1,4 +1,4 @@
-import { handleActions, Action } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import { IModel } from '../model';
 import * as actions from '../action/types';
 
@@ -8,11 +8,9 @@ const initialState: IModel = {
 };
 
 const Reducer = handleActions<IModel>({
-	[actions.SET_USER]: (state: any, action: Action<IModel>) => {
-		console.log('reducer->state:', state);
-		console.log('reducer->action:', action);
+	[actions.SET_USER]: (state: any, action: any) => {
 		return {
-			user: action.payload.user
+			user: action.user
 		};
 	},
 }, initialState)

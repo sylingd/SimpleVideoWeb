@@ -1,8 +1,7 @@
 import { Dispatch } from 'redux';
 
 import * as actions from './types';
-import ajax from '../../ajax';
-import * as LoginApi from '../../api/user/login';
+import * as UserApi from '../../api/user';
 
 import { IUser } from '../../types';
 
@@ -20,16 +19,18 @@ export function logout() {
 	}
 }
 
-export function login(user: string, password: string) {
-	return async (dispatch: Dispatch) => {
-		const res = await ajax({
-			url: LoginApi.URL,
-			post: { user, password }
-		});
-		if (res.success) {
-			const data = (res.data as LoginApi.IResponse);
-			sessionStorage.setItem("token", data.token);
-			dispatch(setUser(data.user));
-		}
+export function login(name: string, password: string) {
+	return (dispatch: Dispatch) => {
+		return new Promise((resolve, reject) => {
+			UserApi.Login({ name, password }).then(res => {
+				if (!(res instanceof Error)) {
+					sessionStorage.setItem("token", res.token);
+					dispatch(setUser(res.user));
+					resolve(res.user);
+				} else {
+					reject(res);
+				}
+			})
+		})
 	}
 }

@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import Video from './Video';
 import Login from './User/Login';
+import Register from './User/Register';
 import { Layout, Menu } from 'antd';
 
 const {
@@ -30,6 +31,7 @@ class App extends React.Component {
 					<div className="wrapper">
 						<Route exact={true} path="/" component={Home} />
 						<Route path="/user/login" component={Login} />
+						<Route path="/user/register" component={Register} />
 						<Route path="/video/:id" component={Video} />
 					</div>
 				</Content>

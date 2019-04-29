@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { History } from 'history';
+import { IUser } from 'src/types';
 import { login } from '../../state/action/user';
 import { Form, Input, Button, Icon, message } from 'antd'
 
 interface IAppProps {
+	history: History,
 	login: any
 }
 
@@ -25,27 +29,24 @@ class App extends React.Component<IAppProps, IAppState> {
 	}
 
 	public onChange(e: React.ChangeEvent<HTMLInputElement>) {
-		switch (e.target.name) {
-			case 'name':
-				this.setState({
-					name: e.target.value
-				});
-				break;
-			case 'password':
-				this.setState({
-					password: e.target.value
-				});
-				break;
-		}
+		const toSet = {};
+		toSet[e.target.name] = e.target.value;
+		this.setState(toSet);
 	}
 
 	public handleSubmit(e: React.FormEvent<any>) {
 		e.preventDefault();
 		const hide = message.loading('登录中', 0)
-		this.props.login(this.state.name, this.state.password).then(
-			() => hide(),
-			(err: any) => console.log(err)
-		)
+		this.props.login(this.state.name, this.state.password)
+		.then((user: IUser) => {
+			hide();
+			message.success('欢迎回来，' + user.nickname);
+			this.props.history.push('/');
+		})
+		.catch((err: Error) => {
+			hide();
+			message.error(err.message);
+		})
 	}
 
 	public render() {
@@ -59,6 +60,7 @@ class App extends React.Component<IAppProps, IAppState> {
 						<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" name="password" placeholder="Password" onChange={this.onChange} />
 					</Form.Item>
 					<Button type="primary" htmlType="submit">登录</Button>
+					<Button type="default"><Link to="/user/register">注册</Link></Button>
 				</Form>
 			</div>
 		);
