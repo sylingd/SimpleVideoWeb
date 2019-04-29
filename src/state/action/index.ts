@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 
-import { IModel } from './model';
-import { IUser } from '../types';
+import { IModel } from '../model';
+import { IUser } from '../../types';
 
 const setUser = createAction<IModel, IUser | null>(
 	'SET_USER',

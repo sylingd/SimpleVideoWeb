@@ -11,6 +11,13 @@ interface IFetchParam {
 	body?: string | FormData;
 }
 
+interface IFetchResult {
+	success: boolean;
+	error?: string;
+	errno?: number;
+	data?: any;
+}
+
 export default async function(param: IAjaxParam) {
 	const fetchParam: IFetchParam = {
 		method: param.post ? 'POST' : 'GET',
@@ -54,5 +61,6 @@ export default async function(param: IAjaxParam) {
 		}
 	}
 	const result = await fetch(url, fetchParam);
-	return result.json();
+	const res = await result.json();
+	return res as IFetchResult;
 }

@@ -1,21 +1,26 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { HashRouter as Router } from 'react-router-dom';
-import App from './frontend/App';
-import { createStore } from 'redux';
+import { Route } from 'react-router-dom';
+import createHistory from 'history/createHashHistory';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { Reducer } from './state/reducers';
+import createReducer from './state/reducer';
+import thunkMiddleware from 'redux-thunk';
+import { ConnectedRouter } from 'connected-react-router';
+import App from './frontend/App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(Reducer);
+const history = createHistory()
+
+const store = createStore(createReducer(history), compose(applyMiddleware(thunkMiddleware)));
 
 ReactDOM.render(
 	<Provider store={store}>
-  		<Router>
-			<App />
-  		</Router>
+		<ConnectedRouter history={history}>
+			<Route exact={true} component={App}/>
+		</ConnectedRouter>
 	</Provider>,
-  	document.getElementById('root') as HTMLElement
+	document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();
