@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { IVideo, IComment } from '../types';
+import { IVideo, IComment } from '../../types';
 import { List, Avatar, Icon, Input, Button } from 'antd';
 import * as dateFormat from 'dateformat';
-import './Video.css';
+import './View.css';
 
 interface IVideoRouteProps {
 	id: string
@@ -23,7 +23,7 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 	constructor(props: IVideoProps) {
 		super(props);
 		const id = parseInt(this.props.match.params.id, 10);
-		const videos: IVideo[] = require('../video.json');
+		const videos: IVideo[] = require('../../video.json');
 		let currentVideo = videos[0];
 		for (const it of videos) {
 			if (it.id === id) {
@@ -34,7 +34,7 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 		this.state = {
 			"id": id,
 			"video": currentVideo,
-			"comments": require('../comment.json'),
+			"comments": require('../../comment.json'),
 			"new_comment": ""
 		}
 	}

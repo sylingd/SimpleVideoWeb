@@ -30,12 +30,13 @@ export default async function(param: IAjaxParam) {
 	if (param.post) {
 		// 遍历一下，查找是否有File
 		let hasFile = false;
-		for (const name in param.post) {
+		for (const name of Object.keys(param.post)) {
 			if (param.post[name] instanceof File) {
 				hasFile = true;
 				break;
 			}
 		}
+		console.log(hasFile);
 		if (hasFile) {
 			const formBody = new FormData();
 			for (const name of Object.keys(param.post)) {

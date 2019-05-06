@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Register } from '../../api/user';
-import { Form, Input, Button, Icon, message } from 'antd';
 import { History } from 'history';
+import { Form, Input, Button, Icon, message } from 'antd';
+import FormInput from '../../component/FormInput';
 
 interface IAppProps {
 	history: History
@@ -54,15 +55,9 @@ class App extends React.Component<IAppProps, IAppState> {
 		return (
 			<div className="Register">
 				<Form onSubmit={this.handleSubmit} className="register-form">
-					<Form.Item>
-						<Input name="name" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" onChange={this.onChange} />
-					</Form.Item>
-					<Form.Item>
-						<Input name="email" prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="EMail" onChange={this.onChange} />
-					</Form.Item>
-					<Form.Item>
-						<Input name="nickname" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nickname" onChange={this.onChange} />
-					</Form.Item>
+					<FormInput name="name" icon="user" placeholder="UserName" onChange={this.onChange} />
+					<FormInput name="email" icon="mail" placeholder="EMail" onChange={this.onChange} />
+					<FormInput name="nickname" icon="user" placeholder="NickName" onChange={this.onChange} />
 					<Form.Item>
 						<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" name="password" placeholder="Password" onChange={this.onChange} />
 					</Form.Item>

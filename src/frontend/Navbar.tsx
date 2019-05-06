@@ -22,6 +22,7 @@ class App extends React.Component<IAppProps, {}> {
 		if (this.props.user.is) {
 			UserEl = (
 				<SubMenu title={this.props.user.user.nickname}>
+					<Menu.Item key="submit"><Link to="/video/submit">提交视频</Link></Menu.Item>
 					<Menu.Item key="logout" onClick={this.props.logout}>登出</Menu.Item>
 				</SubMenu>
 			);

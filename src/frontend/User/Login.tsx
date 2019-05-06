@@ -2,9 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { History } from 'history';
-import { IUser } from 'src/types';
+import { IUser } from '../../types';
 import { login } from '../../state/action/user';
-import { Form, Input, Button, Icon, message } from 'antd'
+import { Form, Input, Button, Icon, message } from 'antd';
+import FormInput from '../../component/FormInput';
 
 interface IAppProps {
 	history: History,
@@ -53,9 +54,7 @@ class App extends React.Component<IAppProps, IAppState> {
 		return (
 			<div className="Login">
 				<Form onSubmit={this.handleSubmit} className="login-form">
-					<Form.Item>
-						<Input name="name" prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" onChange={this.onChange} />
-					</Form.Item>
+					<FormInput name="name" icon="user" placeholder="UserName" onChange={this.onChange} />
 					<Form.Item>
 						<Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" name="password" placeholder="Password" onChange={this.onChange} />
 					</Form.Item>
