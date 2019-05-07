@@ -7,5 +7,7 @@ export interface IRequest {
 }
 
 export interface IResponse {
+	total: number;
+	size: number;
 	list: IUser[];
 }

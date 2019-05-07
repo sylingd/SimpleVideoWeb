@@ -14,16 +14,17 @@ const {
 	Content, Sider, Footer
 } = Layout;
 
+const urls = {
+	home: "/admin/",
+	user: "/admin/user"
+};
+
 class App extends React.Component<IAppProps, {}> {
 	constructor(props: any) {
 		super(props);
 		this.onSelect = this.onSelect.bind(this);
 	}
 	public onSelect(e: any) {
-		const urls = {
-			home: "/admin/",
-			user: "/admin/user"
-		};
 		this.props.history.push(urls[e.key]);
 	}
 	public render() {
