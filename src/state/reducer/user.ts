@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
-import { IUser } from '../../types';
-import * as actions from '../action/types';
+import { IUser } from 'src/types';
+import * as actions from 'src/state/action/types';
 
 interface IModel {
 	is: boolean;

@@ -1,13 +1,11 @@
 import { IUser } from 'src/types';
 
-export const URL = "user/login";
+export const URL = "admin/user/list";
 
 export interface IRequest {
-	name: string;
-	password: string;
+	page: number;
 }
 
 export interface IResponse {
-	token: string;
-	user: IUser;
+	list: IUser[];
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Upload, Icon, message } from 'antd';
-import { Image as ImageUpload } from '../api/upload';
+import { Image as ImageUpload } from 'src/api/upload';
 
 interface IAppState {
 	image: string;

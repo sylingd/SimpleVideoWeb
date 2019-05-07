@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 
 import * as actions from './types';
-import * as UserApi from '../../api/user';
+import * as UserApi from 'src/api/user';
 
-import { IUser } from '../../types';
+import { IUser } from 'src/types';
 
 export function setUser(user: IUser | null) {
 	return {

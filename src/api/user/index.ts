@@ -1,4 +1,4 @@
-import ajax from '../../ajax';
+import ajax from 'src/ajax';
 import * as LoginApi from './login';
 import * as RegisterApi from './register';
 import * as MeApi from './me';

@@ -2,7 +2,7 @@ interface IAjaxParam {
 	post?: object;
 	header?: object;
 	url: string;
-	query?: string;
+	query?: string | URLSearchParams | string[][] | Record<string, string>;
 }
 
 interface IFetchParam {
@@ -36,7 +36,6 @@ export default async function(param: IAjaxParam) {
 				break;
 			}
 		}
-		console.log(hasFile);
 		if (hasFile) {
 			const formBody = new FormData();
 			for (const name of Object.keys(param.post)) {

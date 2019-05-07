@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Register } from '../../api/user';
+import { Register } from 'src/api/user';
 import { History } from 'history';
 import { Form, Input, Button, Icon, message } from 'antd';
-import FormInput from '../../component/FormInput';
+import FormInput from 'src/component/FormInput';
 
 interface IAppProps {
 	history: History

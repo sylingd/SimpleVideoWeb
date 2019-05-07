@@ -8,6 +8,7 @@ import createReducer from './state/reducer';
 import thunkMiddleware from 'redux-thunk';
 import { ConnectedRouter } from 'connected-react-router';
 import App from './frontend/App';
+import BackendApp from './backend/App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -18,7 +19,8 @@ const store = createStore(createReducer(history), compose(applyMiddleware(thunkM
 ReactDOM.render(
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
-			<Route exact={true} component={App}/>
+			<Route exact={true} path="/" component={App}/>
+			<Route path="/admin" component={BackendApp}/>
 		</ConnectedRouter>
 	</Provider>,
 	document.getElementById('root') as HTMLElement

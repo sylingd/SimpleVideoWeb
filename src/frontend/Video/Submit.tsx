@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form, Button } from 'antd';
-import Upload from '../../component/Upload';
-import FormInput from '../../component/FormInput';
+import Upload from 'src/component/Upload';
+import FormInput from 'src/component/FormInput';
 
 interface IAppState {
 	name: string;

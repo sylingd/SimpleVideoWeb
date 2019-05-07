@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IVideo } from '../types';
+import { IVideo } from 'src/types';
 import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
@@ -36,7 +36,7 @@ class Home extends React.Component<{}, IHomeState> {
 	constructor(props: {}) {
 		super(props);
 		this.state = {
-			video: require('../video.json')
+			video: require('src/video.json')
 		}
 	}
 	public render() {

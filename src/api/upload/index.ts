@@ -1,4 +1,4 @@
-import ajax from '../../ajax';
+import ajax from 'src/ajax';
 import * as ImageApi from './image';
 
 export async function Image(req: ImageApi.IRequest) {

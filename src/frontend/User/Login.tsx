@@ -2,10 +2,10 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { History } from 'history';
-import { IUser } from '../../types';
-import { login } from '../../state/action/user';
+import { IUser } from 'src/types';
+import { login } from 'src/state/action/user';
 import { Form, Input, Button, Icon, message } from 'antd';
-import FormInput from '../../component/FormInput';
+import FormInput from 'src/component/FormInput';
 
 interface IAppProps {
 	history: History,

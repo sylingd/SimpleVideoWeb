@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
-import { logout, refresh } from '../state/action/user';
+import { logout, refresh } from 'src/state/action/user';
 import { connect } from 'react-redux';
 
 const SubMenu = Menu.SubMenu;
