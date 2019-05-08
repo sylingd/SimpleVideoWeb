@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Modal, Button, Table, Avatar } from 'antd';
+import { Form, Modal, Button, Table, Avatar, message } from 'antd';
 import { IUser } from 'src/types';
 import * as UserApi from 'src/api/admin/user';
 import { PaginationConfig } from 'antd/lib/table';
+import Upload from 'src/component/Upload';
 import FormInput from 'src/component/FormInput';
 
 interface IAppState {
@@ -28,6 +29,7 @@ class App extends React.Component<{}, IAppState> {
 		this.handleChange = this.handleChange.bind(this);
 		this.handleEdit = this.handleEdit.bind(this);
 		this.handleEditChange = this.handleEditChange.bind(this);
+		this.handleUpload = this.handleUpload.bind(this);
 	}
 	public async load() {
 		this.setState({
@@ -67,14 +69,31 @@ class App extends React.Component<{}, IAppState> {
 		});
 	}
 	public async handleEdit() {
+		if (this.state.edit === null) {
+			return;
+		}
 		this.setState({
 			editLoading: true
 		});
+		const res = await UserApi.Save(this.state.edit);
+		this.setState({
+			editShow: false,
+			editLoading: false
+		});
+		if (!(res instanceof Error)) {
+			message.success('修改成功');
+			await this.load();
+		}
 	}
 	public handleEditChange(e: React.ChangeEvent<HTMLInputElement>) {
-		const user = {...this.state.user};
-		user[e.target.name] = e.target.value;
-		this.setState({ user });
+		const edit = Object.assign({}, this.state.edit);
+		edit[e.target.name] = e.target.value;
+		this.setState({ edit });
+	}
+	public handleUpload(url: string) {
+		const edit = Object.assign({}, this.state.edit);
+		edit.avatar = url;
+		this.setState({ edit });
 	}
 	public render() {
 		const columns = [{
@@ -113,6 +132,9 @@ class App extends React.Component<{}, IAppState> {
 		}];
 		const editContent = this.state.edit === null ? (<div />) : (
 			<div>
+				<Form.Item>
+					<Upload onUpload={this.handleUpload} height={100} width={100} image={this.state.edit.avatar} />
+				</Form.Item>
 				<FormInput name="name" icon="user" placeholder="UserName" onChange={this.handleEditChange} value={this.state.edit.name} />
 				<FormInput name="email" icon="mail" placeholder="EMail" onChange={this.handleEditChange} value={this.state.edit.email} />
 				<FormInput name="nickname" icon="user" placeholder="NickName" onChange={this.handleEditChange} value={this.state.edit.nickname} />

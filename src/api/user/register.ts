@@ -5,6 +5,7 @@ export interface IRequest {
 	email: string;
 	password: string;
 	nickname: string;
+	avatar: string;
 }
 
 export interface IResponse {

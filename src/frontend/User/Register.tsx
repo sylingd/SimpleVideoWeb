@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Register } from 'src/api/user';
 import { History } from 'history';
 import { Form, Input, Button, Icon, message } from 'antd';
+import Upload from 'src/component/Upload';
 import FormInput from 'src/component/FormInput';
 
 interface IAppProps {
@@ -14,6 +15,7 @@ interface IAppState {
 	email: string;
 	password: string;
 	nickname: string;
+	avatar: string;
 }
 
 class App extends React.Component<IAppProps, IAppState> {
@@ -23,7 +25,8 @@ class App extends React.Component<IAppProps, IAppState> {
 			name: '',
 			email: '',
 			password: '',
-			nickname: ''
+			nickname: '',
+			avatar: ''
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -51,10 +54,19 @@ class App extends React.Component<IAppProps, IAppState> {
 		})
 	}
 
+	public handleUpload(url: string) {
+		this.setState({
+			avatar: url
+		});
+	}
+
 	public render() {
 		return (
 			<div className="Register">
 				<Form onSubmit={this.handleSubmit} className="register-form">
+					<Form.Item>
+						<Upload onUpload={this.handleUpload} height={100} width={100} />
+					</Form.Item>
 					<FormInput name="name" icon="user" placeholder="UserName" onChange={this.onChange} />
 					<FormInput name="email" icon="mail" placeholder="EMail" onChange={this.onChange} />
 					<FormInput name="nickname" icon="user" placeholder="NickName" onChange={this.onChange} />

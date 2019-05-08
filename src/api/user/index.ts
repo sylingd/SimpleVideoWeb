@@ -22,12 +22,7 @@ export async function Login(req: LoginApi.IRequest) {
 export async function Register(req: RegisterApi.IRequest) {
 	const res = await ajax({
 		url: RegisterApi.URL,
-		post: {
-			name: req.name,
-			email: req.email,
-			password: req.password,
-			nickname: req.nickname
-		}
+		post: req
 	});
 	if (res.success) {
 		const data = (res.data as RegisterApi.IResponse);

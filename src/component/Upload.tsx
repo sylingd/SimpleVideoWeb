@@ -9,6 +9,7 @@ interface IAppState {
 
 interface IAppProps {
 	onUpload: (url: string) => void;
+	image?: string;
 	accept?: string;
 	width?: number;
 	height?: number;
@@ -24,12 +25,20 @@ class App extends React.Component<IAppProps, IAppState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			image: "",
+			image: this.props.image || "",
 			loading: false
 		}
 
 		this.handleRequest = this.handleRequest.bind(this);
 		this.handleUpload = this.handleUpload.bind(this);
+	}
+
+	public componentWillReceiveProps(newProps: any) {
+		if (typeof(newProps.image) !== "undefined" && newProps.image !== this.state.image) {
+			this.setState({
+				image: newProps.image
+			});
+		}
 	}
 
 	public async handleRequest(detail: any) {
@@ -74,10 +83,10 @@ class App extends React.Component<IAppProps, IAppState> {
 	public render() {
 		const imageUrl = this.state.image;
 		const style = {
-			"height": this.props.height + "px",
-			"width": this.props.width + "px",
-			"line-height": this.props.height + "px",
-			"fontSize": ((this.props.height || 0) / 3) + "px"
+			height: this.props.height + "px",
+			width: this.props.width + "px",
+			lineHeight: this.props.height + "px",
+			fontSize: ((this.props.height || 0) / 3) + "px"
 		};
 		const uploadButton = (
 			<div style={style}>
