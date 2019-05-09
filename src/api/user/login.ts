@@ -1,13 +1,30 @@
 import { IUser } from 'src/types';
+import ajax from 'src/ajax';
 
-export const URL = "user/login";
+const URL = "user/login";
 
-export interface IRequest {
+interface IRequest {
 	name: string;
 	password: string;
 }
 
-export interface IResponse {
+interface IResponse {
 	token: string;
 	user: IUser;
+}
+
+export default async function(req: IRequest) {
+	const res = await ajax({
+		url: URL,
+		post: {
+			name: req.name,
+			password: req.password
+		}
+	});
+	if (res.success) {
+		const data = (res.data as IResponse);
+		return data;
+	} else {
+		return new Error(res.error);
+	}
 }

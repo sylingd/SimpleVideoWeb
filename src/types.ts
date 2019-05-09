@@ -10,6 +10,7 @@ export interface IVideo {
 
 export interface IUser {
 	id: number;
+	is_admin: boolean;
 	name: string;
 	avatar: string;
 	nickname: string;
@@ -22,4 +23,9 @@ export interface IComment {
 	create_time: string;
 	zan: number;
 	body: string;
+}
+
+export interface ICategory {
+	id: number;
+	name: string;
 }

@@ -61,6 +61,7 @@ class App extends React.Component<{}, IAppState> {
 		this.setState({ pagination });
 		await this.load();
 	}
+
 	public handleEditOpen(it: IUser) {
 		this.setState({
 			editShow: true,
@@ -95,6 +96,14 @@ class App extends React.Component<{}, IAppState> {
 		edit.avatar = url;
 		this.setState({ edit });
 	}
+
+	public async handleDelete(it: IUser) {
+		await UserApi.Del({
+			id: it.id
+		});
+		await this.load();
+	}
+
 	public render() {
 		const columns = [{
 			title: "头像",
@@ -125,7 +134,7 @@ class App extends React.Component<{}, IAppState> {
 				return (
 					<Button.Group>
 						<Button onClick={() => this.handleEditOpen(record)}>编辑</Button>
-						<Button>删除</Button>
+						<Button onClick={() => this.handleDelete(record)}>删除</Button>
 					</Button.Group>
 				)
 			}

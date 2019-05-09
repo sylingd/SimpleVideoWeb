@@ -29,3 +29,5 @@ export async function Save(req: SaveApi.IRequest) {
 		return new Error(res.error);
 	}
 }
+
+export { default as Del } from './del';

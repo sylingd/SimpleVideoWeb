@@ -46,6 +46,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@loadable/component@^5.9.0":
+  version "5.9.0"
+  resolved "https://registry.npm.taobao.org/@loadable/component/download/@loadable/component-5.9.0.tgz#9b3e983f14c730d1c8894c352b78ebc401091f76"
+  integrity sha1-mz6YPxTHMNHIiUw1K3jrxAEJH3Y=
+  dependencies:
+    hoist-non-react-statics "^3.3.0"
+
 "@types/dateformat@^3.0.0":
   version "3.0.0"
   resolved "https://registry.npm.taobao.org/@types/dateformat/download/@types/dateformat-3.0.0.tgz#d3cbfa8ac3789990592f3d9585331cdb2c5f979f"
@@ -80,6 +87,13 @@
   version "0.0.29"
   resolved "https://registry.npm.taobao.org/@types/json5/download/@types/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
+
+"@types/loadable__component@^5.9.0":
+  version "5.9.0"
+  resolved "https://registry.npm.taobao.org/@types/loadable__component/download/@types/loadable__component-5.9.0.tgz#6c59ccbfa49329d227f74d0c49002888a11a817d"
+  integrity sha1-bFnMv6STKdIn900MSQAoiKEagX0=
+  dependencies:
+    "@types/react" "*"
 
 "@types/node@^11.13.6":
   version "11.13.8"

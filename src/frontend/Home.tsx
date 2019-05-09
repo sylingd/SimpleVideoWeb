@@ -11,7 +11,7 @@ const VideoList = (props: IVideoListProps) => {
 	const v = props.value;
 	const res = v.map(e => {
 		return (
-			<Link to={`/video/${e.id}`} key={e.id}>
+			<Link to={`/video/view/${e.id}`} key={e.id}>
 				<Card
 					hoverable={true}
 					style={{ width: 240 }}
@@ -24,7 +24,7 @@ const VideoList = (props: IVideoListProps) => {
 		)
 	});
 	return (
-		<div>{res}</div>
+		<div className="video-list">{res}</div>
 	);
 }
 
@@ -40,10 +40,9 @@ class Home extends React.Component<{}, IHomeState> {
 		}
 	}
 	public render() {
-		const { video } = this.state;
 		return (
 			<div className="Home">
-				<VideoList value={video} />
+				<VideoList value={this.state.video} />
 			</div>
 		);
 	}

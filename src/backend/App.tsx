@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { Route } from 'react-router-dom';
-import { History } from 'history';
+import { History, Location } from 'history';
 import { connect } from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
-import Home from './Home';
-import User from './User';
+import { Route } from 'react-router';
+import loadable from '@loadable/component';
 
 interface IAppProps {
-	history: History
+	history: History,
+	location: Location
 }
 
 const {
@@ -48,8 +48,8 @@ class App extends React.Component<IAppProps, {}> {
 				<Layout style={{ marginLeft: 200 }}>
 					<Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
 						<div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
-							<Route exact={true} path="/admin" component={Home} />
-							<Route path="/admin/user" component={User} />
+							<Route exact={true} path="/" component={loadable(() => import('./Home'))} />
+							<Route path="/user" component={loadable(() => import('./User'))} />
 						</div>
 					</Content>
 					<Footer />

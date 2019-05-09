@@ -1,10 +1,10 @@
-import { IUser } from 'src/types';
+import { ICategory } from 'src/types';
 import ajax from 'src/ajax';
 
-const URL = "user/me";
+const URL = "category/list";
 
 interface IResponse {
-	user: IUser;
+	list: ICategory[];
 }
 
 export default async function() {

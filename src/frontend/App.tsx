@@ -3,17 +3,23 @@ import { Route } from 'react-router-dom';
 import { Layout } from 'antd';
 import './App.css';
 import Navbar from './Navbar';
-import Home from './Home';
-import Video from './Video/View';
-import VideoSubmit from './Video/Submit';
-import Login from './User/Login';
-import Register from './User/Register';
+import { connect } from 'react-redux';
+import { refresh } from 'src/state/action/category';
+import loadable from '@loadable/component';
 
 const {
 	Header, Content
 } = Layout;
 
-class App extends React.Component {
+interface IAppProps {
+	refresh: any;
+}
+
+class App extends React.Component<IAppProps, {}> {
+	constructor(props: any) {
+		super(props);
+		this.props.refresh();
+	}
 	public render() {
 		return (
 			<Layout className="app">
@@ -22,11 +28,11 @@ class App extends React.Component {
 				</Header>
 				<Content className="content">
 					<div className="wrapper">
-						<Route exact={true} path="/" component={Home} />
-						<Route path="/user/login" component={Login} />
-						<Route path="/user/register" component={Register} />
-						<Route path="/video/submit" component={VideoSubmit} />
-						<Route path="/video/view/:id" component={Video} />
+						<Route exact={true} path="/" component={loadable(() => import('./Home'))} />
+						<Route path="/user/login" component={loadable(() => import('./User/Login'))} />
+						<Route path="/user/register" component={loadable(() => import('./User/Register'))} />
+						<Route path="/video/submit" component={loadable(() => import('./Video/Submit'))} />
+						<Route path="/video/view/:id" component={loadable(() => import('./Video/View'))} />
 					</div>
 				</Content>
 			</Layout>
@@ -34,4 +40,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default connect(null, { refresh })(App);

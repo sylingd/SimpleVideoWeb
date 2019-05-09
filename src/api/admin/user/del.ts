@@ -1,27 +1,20 @@
 import ajax from 'src/ajax';
 
-const URL = "user/register";
+const URL = "admin/user/del";
 
 interface IRequest {
-	name: string;
-	email: string;
-	password: string;
-	nickname: string;
-	avatar: string;
-}
-
-interface IResponse {
 	id: number;
 }
 
 export default async function(req: IRequest) {
 	const res = await ajax({
 		url: URL,
-		post: req
+		query: {
+			id: req.id.toString()
+		}
 	});
 	if (res.success) {
-		const data = (res.data as IResponse);
-		return data;
+		return res.data;
 	} else {
 		return new Error(res.error);
 	}

@@ -1,23 +1,22 @@
+import { IVideo } from 'src/types';
 import ajax from 'src/ajax';
 
-const URL = "user/register";
+const URL = "video/get";
 
 interface IRequest {
-	name: string;
-	email: string;
-	password: string;
-	nickname: string;
-	avatar: string;
+	id: number;
 }
 
 interface IResponse {
-	id: number;
+	video: IVideo;
 }
 
 export default async function(req: IRequest) {
 	const res = await ajax({
 		url: URL,
-		post: req
+		query: {
+			id: req.id.toString()
+		}
 	});
 	if (res.success) {
 		const data = (res.data as IResponse);
