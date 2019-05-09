@@ -10,7 +10,7 @@ export interface IVideo {
 
 export interface IUser {
 	id: number;
-	is_admin: boolean;
+	is_admin: number;
 	name: string;
 	avatar: string;
 	nickname: string;

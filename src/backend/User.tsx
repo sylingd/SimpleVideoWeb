@@ -134,7 +134,7 @@ class App extends React.Component<{}, IAppState> {
 				return (
 					<Button.Group>
 						<Button onClick={() => this.handleEditOpen(record)}>编辑</Button>
-						<Button onClick={() => this.handleDelete(record)}>删除</Button>
+						<Button onClick={() => this.handleDelete(record)} disabled={record.is_admin.toString() === "1"}>删除</Button>
 					</Button.Group>
 				)
 			}
@@ -151,7 +151,7 @@ class App extends React.Component<{}, IAppState> {
 		);
 		return (
 			<div>
-				<Table columns={columns} dataSource={this.state.user} loading={this.state.loading} onChange={this.handleChange} pagination={this.state.pagination} />
+				<Table columns={columns} dataSource={this.state.user} loading={this.state.loading} onChange={this.handleChange} pagination={this.state.pagination} rowKey="id" />
 				<Modal title="编辑"
 					visible={this.state.editShow}
 					onOk={this.handleEdit}

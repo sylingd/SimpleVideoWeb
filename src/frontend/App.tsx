@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import { Layout } from 'antd';
 import './App.css';
 import Navbar from './Navbar';
@@ -28,11 +28,14 @@ class App extends React.Component<IAppProps, {}> {
 				</Header>
 				<Content className="content">
 					<div className="wrapper">
-						<Route exact={true} path="/" component={loadable(() => import('./Home'))} />
-						<Route path="/user/login" component={loadable(() => import('./User/Login'))} />
-						<Route path="/user/register" component={loadable(() => import('./User/Register'))} />
-						<Route path="/video/submit" component={loadable(() => import('./Video/Submit'))} />
-						<Route path="/video/view/:id" component={loadable(() => import('./Video/View'))} />
+						<Switch>
+							<Route path="/user/login" component={loadable(() => import('./User/Login'))} />
+							<Route path="/user/register" component={loadable(() => import('./User/Register'))} />
+							<Route path="/video/submit" component={loadable(() => import('./Video/Submit'))} />
+							<Route path="/video/list/:id" component={loadable(() => import('./Video/List'))} />
+							<Route path="/video/view/:id" component={loadable(() => import('./Video/View'))} />
+							<Redirect from="/" to="/video/list/all" />
+						</Switch>
 					</div>
 				</Content>
 			</Layout>

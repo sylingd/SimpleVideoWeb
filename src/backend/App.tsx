@@ -49,7 +49,7 @@ class App extends React.Component<IAppProps, {}> {
 					<Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
 						<div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
 							<Route exact={true} path="/" component={loadable(() => import('./Home'))} />
-							<Route path="/user" component={loadable(() => import('./User'))} />
+							<Route path="/admin/user" component={loadable(() => import('./User'))} />
 						</div>
 					</Content>
 					<Footer />
