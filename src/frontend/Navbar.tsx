@@ -21,7 +21,10 @@ class App extends React.Component<IAppProps, {}> {
 	}
 	public renderCategory() {
 		const list = this.props.category.map(it => {
-			return (<Menu.Item key={`cat:${it.id}`}>{it.name}</Menu.Item>)
+			return (
+				<Menu.Item key={`cat:${it.id}`}>
+					<Link to={`/video/list/${it.id}`}>{it.name}</Link>
+				</Menu.Item>)
 		});
 		return (
 			<SubMenu title="分类">{list}</SubMenu>
@@ -33,7 +36,7 @@ class App extends React.Component<IAppProps, {}> {
 			UserEl = (
 				<SubMenu title={this.props.user.user.nickname}>
 					<Menu.Item key="submit"><Link to="/video/submit">提交视频</Link></Menu.Item>
-					{this.props.user.user.is_admin ? (<Menu.Item key="admin"><Link to="/admin/">进入后台管理</Link></Menu.Item>): ""}
+					{this.props.user.user.is_admin ? (<Menu.Item key="admin"><Link to="/admin/">进入后台管理</Link></Menu.Item>) : ""}
 					<Menu.Item key="logout" onClick={this.props.logout}>登出</Menu.Item>
 				</SubMenu>
 			);

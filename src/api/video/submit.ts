@@ -1,19 +1,21 @@
 import { IVideo } from 'src/types';
 import ajax from 'src/ajax';
 
-const URL = "video/get/";
+const URL = "video";
 
-interface IRequest {
+interface IResponse {
 	id: number;
 }
 
-interface IResponse {
-	video: IVideo;
-}
-
-export default async function(req: IRequest) {
+export default async function(req: IVideo) {
 	const res = await ajax({
-		url: URL + req.id
+		url: URL,
+		post: {
+			name: req.name,
+			image: req.image,
+			aid: req.aid,
+			category: req.category
+		}
 	});
 	if (res.success) {
 		const data = (res.data as IResponse);

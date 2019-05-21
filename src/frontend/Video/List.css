@@ -1,3 +1,7 @@
 .video-list {
 	min-height: 150px;
+	display: flex;
+}
+.video-list > a {
+	display: block;
 }

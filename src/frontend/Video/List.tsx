@@ -19,7 +19,7 @@ const VideoList = (props: IVideoListProps) => {
 					style={{ width: 240 }}
 					cover={<img src={e.image} />}>
 					<Card.Meta
-						title={e.title}
+						title={e.name}
 					/>
 				</Card>
 			</Link>

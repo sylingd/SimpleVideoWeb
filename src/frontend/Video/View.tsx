@@ -50,9 +50,9 @@ class Video extends React.Component<IVideoProps, IVideoState> {
 	}
 
 	public render() {
-		const src = this.state.video === null ? "" : `//player.bilibili.com/player.html?aid=${this.state.video.aid}"`;
+		const src = this.state.video === null ? "" : `//player.bilibili.com/player.html?aid=${this.state.video.aid}`;
 		return (
-			<Spin>
+			<Spin spinning={this.state.loading}>
 				<div className="video">
 					<iframe src={src} />
 					<div className="left-section">

@@ -2,7 +2,7 @@ export interface IVideo {
 	id: number;
 	category: number;
 	user: number;
-	title: string;
+	name: string;
 	image: string;
 	aid: number;
 	create_time: string;
