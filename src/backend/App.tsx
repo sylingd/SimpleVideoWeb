@@ -18,6 +18,7 @@ const urls = {
 	home: "/admin/",
 	user: "/admin/user",
 	category: "/admin/category",
+	video: "/admin/video",
 	"return-index": "/"
 };
 
@@ -49,6 +50,10 @@ class App extends React.Component<IAppProps, {}> {
 							<Icon type="menu" />
 							<span className="nav-text">类型</span>
 						</Menu.Item>
+						<Menu.Item key="video">
+							<Icon type="video-camera" />
+							<span className="nav-text">视频</span>
+						</Menu.Item>
 						<Menu.Item key="return-index">
 							<Icon type="rollback" />
 							<span className="nav-text">返回前台</span>
@@ -61,6 +66,7 @@ class App extends React.Component<IAppProps, {}> {
 							<Route exact={true} path="/" component={loadable(() => import('./Home'))} />
 							<Route path="/admin/user" component={loadable(() => import('./User'))} />
 							<Route path="/admin/category" component={loadable(() => import('./Category'))} />
+							<Route path="/admin/video" component={loadable(() => import('./Video'))} />
 						</div>
 					</Content>
 					<Footer />

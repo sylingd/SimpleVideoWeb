@@ -8,6 +8,8 @@ interface IRequest {
 }
 
 interface IResponse {
+	total: number;
+	size: number;
 	list: IVideo[];
 }
 
